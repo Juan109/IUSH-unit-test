@@ -1,21 +1,39 @@
 # Respuestas del taller — RutaSegura
 
 Integrantes:
--
--
+- Juan Jose Pulido 
+- Brayan Rivera 
 
 ## Ejercicio 1 — Diseño de casos (RN-01 a RN-04)
 
 | Regla | Entradas (velocidad, distancia, factor) | Resultado esperado (calculado a mano) | Tipo (feliz / límite / error) |
 |---|---|---|---|
-| RN-01 | | | |
-| | | | |
+| RN-01 | vel: 40 km/h , dis: 10 , factor : 1.5 | 23 minutos| feliz
+| RN-01 | vel: 40 km/h , dis: 10 , factor : 1   | 15 minutos| Limite
+| RN-01 | vel: 40 km/h , dis: 10 , factor : 3   | 45 minutos| Limite
+| RN-01 | vel: 40 km/h , dis: 10 , factor : 3.5 | RangeError| Error
 
+| RN-02 | vel: 55 km/h , dis: 8 , factor : 1.6 | 14 minutos | feliz
+| RN-02 | vel: 55 km/h , dis: 0 , factor : 1.5 | 0 minutos  | Limite
+| RN-02 | vel: 0 km/h , dis: 8 , factor : 1.5 | Null       | Limite
+| RN-02 | vel: 0 km/h , dis: -5 , factor : 1.5 | RangeError | Error (Distancia Negativa)
+
+| RN-03 | vel: 30 km/h , dis: 5 , factor : 1.0 | 10 minutos| feliz
+| RN-03 | vel: 1 km/h , dis: 10 , factor : 1.0 | 600 minutos| Limite
+| RN-03 | vel: 50 km/h , dis: 1 , factor : 1.0 | 2 minutos| Limite
+| RN-03 | vel: 40 km/h , dis: -5 , factor : 1.0 | RangeError| Error 
+
+| RN-04 | vel: 40 km/h , dis: 10 , factor : 2 | 30 minutos| feliz
+| RN-04 | vel: 40 km/h , dis: 10 , factor : 1.0 | 15 minutos| Limite
+| RN-04 | vel: 40 km/h , dis: 10 , factor : 3.0 | 45 minutos| Limite
+| RN-04 | vel: 40 km/h , dis: 10 , factor : 3.1 | RangeError| Error 
 ## Preguntas
 
 Respondan cada pregunta con base en SUS pruebas (citen el nombre del `it` cuando aplique). Respuestas genéricas copiadas de internet no suman puntos.
 
 **1.** Para `calcularMinutosEstimados`, ¿qué valores de entrada escogieron para el caso feliz y por qué esos y no otros? ¿Qué demuestra esa prueba y qué NO demuestra?
+R/  Para calcular 'calcularMinutosEstimados' usamos valores cotidianos como velocidad de 40km/h , 10 km y 1.5 de Factor Trafico  , y no escogi valores irreales mucho mas altos ya que seria algo absurdo para este escenario en especifico.
+Esta prueba demuestra que aplicando la formula dada es util para escenarios ideales , pero la funcion es inutil para excepciones como cuando la velocidad es 0.
 
 **2.** Tomen su prueba de caso feliz de RN-01 y cambien únicamente el dato `factorTrafico` a `1.0` (ajustando el valor esperado según la fórmula). ¿Cambia el resultado de la prueba (pasa / falla)? ¿Qué les enseña esto sobre la selección de datos de prueba?
 
