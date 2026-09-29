@@ -36,8 +36,10 @@ R/  Para calcular 'calcularMinutosEstimados' usamos valores cotidianos como velo
 Esta prueba demuestra que aplicando la formula dada es util para escenarios ideales , pero la funcion es inutil para excepciones como cuando la velocidad es 0.
 
 **2.** Tomen su prueba de caso feliz de RN-01 y cambien únicamente el dato `factorTrafico` a `1.0` (ajustando el valor esperado según la fórmula). ¿Cambia el resultado de la prueba (pasa / falla)? ¿Qué les enseña esto sobre la selección de datos de prueba?
+R/ Si pasa , pero erroneamente ya que al estar mal la formula (divicion en vez de multiplicacion) si usamos el 1.0 para multiplicar o dividir da lo mismo , esto nos enseña que debemos usar datos que no sean neutros como 1 , para evaluar correctamente los pruebas.
 
 **3.** En RN-06 y RN-08, ¿por qué probaron exactamente los valores límite (90, -90, 5, 15, etc.) y no solo valores "del medio" como 45 o 10? Expliquen con el resultado que obtuvieron.
+R/  Porque generalmente los errores estan en los limites como el caso de la prueba DEF-04 al enviar 15 obtuvimos GRAVE en lugar de LEVE ,y el caso del DEF-06 que enviamos 90 esperando que el limite diera 'True' y el resultado dio 'False' Si se hubieran probado valores del medio como 10 , no se hubiera podido detectar que hubo un error de signos.
 
 **4.** Una prueba que pasa, ¿demuestra que la función es correcta? Argumenten usando un ejemplo real de su suite.
 
