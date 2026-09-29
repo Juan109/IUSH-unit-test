@@ -20,11 +20,15 @@ Integrantes:
 | RN-02 | vel: 0 km/h , dis: 8 , factor : 1.5 | Null       | Limite
 | RN-02 | vel: 0 km/h , dis: -5 , factor : 1.5 | RangeError | Error (Distancia Negativa)
 
+| Regla | Entradas (velocidad, distancia, factor) | Resultado esperado (calculado a mano) | Tipo (feliz / límite / error) |
+|---|---|---|---|
 | RN-03 | vel: 30 km/h , dis: 5 , factor : 1.0 | 10 minutos| feliz
 | RN-03 | vel: 1 km/h , dis: 10 , factor : 1.0 | 600 minutos| Limite
 | RN-03 | vel: 50 km/h , dis: 1 , factor : 1.0 | 2 minutos| Limite
 | RN-03 | vel: 40 km/h , dis: -5 , factor : 1.0 | RangeError| Error 
 
+| Regla | Entradas (velocidad, distancia, factor) | Resultado esperado (calculado a mano) | Tipo (feliz / límite / error) |
+|---|---|---|---|
 | RN-04 | vel: 40 km/h , dis: 10 , factor : 2 | 30 minutos| feliz
 | RN-04 | vel: 40 km/h , dis: 10 , factor : 1.0 | 15 minutos| Limite
 | RN-04 | vel: 40 km/h , dis: 10 , factor : 3.0 | 45 minutos| Limite
