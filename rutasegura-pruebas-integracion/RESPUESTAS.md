@@ -29,6 +29,19 @@ Sirve para registrar y verificar las interacciones. Al guardar la placa cada vez
 | 2 | MonitorRuta integrando geo, eta y alertas|ProveedorGPS | geo, eta, alertas integrando ProveedorGPS| Driver temporal que llame a cálculos y al GPS|
 | 3 | Todos (MonitorRuta + lógica + ProveedorGPS)|Ninguno | Todos (MonitorRuta + lógica + ProveedorGPS)| Ninguno (Sistema completo)|
 
+### 2.1 Calcular a mano antes de programar
+
+Los datos están en `tests/datosPrueba.ts`. Completen la tabla **antes** de escribir código. Una prueba sin un valor esperado calculado de forma independiente no prueba nada.
+
+| Escenario | Distancia | Velocidad | Factor | Minutos ETA | Hora llegada | Programada | Retraso | Alerta |
+|---|---|---|---|---|---|---|---|---|
+| Ejemplo (ya hecho) | 1.322 km | 30 km/h | 1.0 | 3 | 06:33 | 06:40 | 0 | NINGUNA |
+| Lejos y trancón | 3.314 km | 15 km/h | 3.0 | 40 | 7:10 | 06:40 | 30 |Roja |
+| Retraso de exactamente 15 | 1.322 km | 30 km/h | 1.0 | 3| 6:55 | 6:40 | 15 |Amarilla |
+| Bus en el paradero | 0 km | 30 km/h | 1.0 |0 | 6:30 | 06:40 | 0 | Ninguna |
+| Bus detenido | 1.322 km | 0 km/h | 1.0 | null | null| 06:40 | null| N/A|
+
+> Fórmula (RN-01): `minutos = ⌈ distancia / velocidad × 60 × factor ⌉`
 ## Preguntas
 
 **1.** Con sus palabras y usando un archivo de este repositorio como ejemplo: ¿cuál es la diferencia entre un stub y un driver? ¿En qué dirección de la llamada está cada uno?
