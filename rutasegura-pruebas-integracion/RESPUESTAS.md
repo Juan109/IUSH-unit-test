@@ -1,18 +1,33 @@
 # Respuestas del taller — RutaSegura (Integración)
 
 Integrantes:
--
--
+- Juan Jose Pulido
+- Brayan Rivera
 
 ## Ejercicio 1 — Orden de integración
 
 Dibujen (o describan) el orden en que integrarían los módulos de RutaSegura con cada estrategia, indicando en cada paso qué stubs o drivers se necesitan.
 
+¿Quién llama al ProveedorGPSStub? ¿Y a quién llama el driverCalculoLlegada?
+1. A ProveedorGPSStub lo llama: El módulo MonitorRuta (como parte de una prueba top-down).
+- "driverCalculoLlegada" llama a: Los módulos de bajo nivel geo (función calcularDistanciaKm), eta (funciones calcularMinutosEstimados y calcularHoraEstimadaLlegada) y alertas (función determinarNivelAlerta).
+
+2. ¿Qué componente real reemplaza cada uno?
+El ProveedorGPSStub reemplaza a: El hardware real del GPS (el proveedor de GPS en producción que consulta satélites/redes).
+
+El driverCalculoLlegada reemplaza a: El módulo real MonitorRuta (como lo indican los comentarios, actúa como este módulo mientras aún no existe para poder probar los niveles inferiores).
+
+3. ¿Para qué sirve el arreglo llamadas del stub?
+Sirve para registrar y verificar las interacciones. Al guardar la placa cada vez que se invoca obtenerPosicion, la prueba puede comprobar (hacer un "assert") que MonitorRuta efectivamente consultó el GPS, cuántas veces lo hizo, y si lo hizo pidiendo la placa correcta.
+
+[ driverCalculoLlegada ] ──→ [ geo, eta, alertas ]        (bottom-up)
+   [ MonitorRuta ]          ──→ [ ProveedorGPSStub ]         (top-down)
+
 | Paso | Top-down: módulos reales | Stubs necesarios | Bottom-up: módulos reales | Drivers necesarios |
 |---|---|---|---|---|
-| 1 | | | | |
-| 2 | | | | |
-| 3 | | | | |
+| 1 |MonitorRuta |  geo, eta, alertas y ProveedorGPS| geo, eta y alertas| driverCalculoLlegada (simula a MonitorRuta)|
+| 2 | MonitorRuta integrando geo, eta y alertas|ProveedorGPS | geo, eta, alertas integrando ProveedorGPS| Driver temporal que llame a cálculos y al GPS|
+| 3 | Todos (MonitorRuta + lógica + ProveedorGPS)|Ninguno | Todos (MonitorRuta + lógica + ProveedorGPS)| Ninguno (Sistema completo)|
 
 ## Preguntas
 
